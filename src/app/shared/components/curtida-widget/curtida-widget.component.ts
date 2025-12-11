@@ -1,7 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { UniqueIdService } from '../../services/unique-id/unique-id.service';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { debounceTime, Subject } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-curtida-widget',
@@ -16,8 +25,12 @@ export class CurtidaWidgetComponent implements OnInit {
   @Input() public id: string = null;
 
   public icones = { faThumbsUp };
+  private clickSubject = new Subject<void>();
 
-  constructor(private service: UniqueIdService) {}
+  constructor(
+    private service: UniqueIdService,
+    private destroyRef: DestroyRef
+  ) {}
 
   ngOnInit(): void {
     if (!this.id) {
@@ -30,10 +43,20 @@ export class CurtidaWidgetComponent implements OnInit {
         }
       });
     }
+
+    this.clickSubject
+      .asObservable()
+      .pipe(debounceTime(500), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => this.darCurtida());
   }
 
   adicionarCurtida() {
+    this.clickSubject.next();
+  }
+
+  private darCurtida() {
     this.numeroLikes++;
+    this.curtida.emit();
   }
 
   // public darCurtida() {
