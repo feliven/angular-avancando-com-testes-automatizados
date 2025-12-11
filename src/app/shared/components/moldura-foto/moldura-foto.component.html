@@ -1,0 +1,9 @@
+<div class="moldura-container">
+  <img [src]="src" [alt]="alt" tabindex="0" class="foto" />
+  <div class="barra-curtidas">
+    <app-curtida-widget
+      (curtida)="darCurtida()"
+      [numeroLikes]="curtidas"
+    ></app-curtida-widget>
+  </div>
+</div>

@@ -32,7 +32,11 @@ export class CurtidaWidgetComponent implements OnInit {
     }
   }
 
-  public darCurtida() {
-    this.curtida.emit();
+  adicionarCurtida() {
+    this.numeroLikes++;
   }
+
+  // public darCurtida() {
+  //   this.curtida.emit();
+  // }
 }
