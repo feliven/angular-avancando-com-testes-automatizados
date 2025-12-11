@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MolduraFotoComponent } from './moldura-foto.component';
+import { UniqueIdService } from '../../services/unique-id/unique-id.service';
 
 describe('MolduraFotoComponent', () => {
   let component: MolduraFotoComponent;
@@ -8,9 +9,9 @@ describe('MolduraFotoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MolduraFotoComponent]
-    })
-    .compileComponents();
+      imports: [MolduraFotoComponent],
+      providers: [UniqueIdService],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MolduraFotoComponent);
     component = fixture.componentInstance;
