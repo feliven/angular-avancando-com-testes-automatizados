@@ -1,0 +1,23 @@
+<div
+  class="curtida-widget"
+  (click)="darCurtida()"
+  (keyup.Enter)="darCurtida()"
+  (keyup.Space)="darCurtida()"
+>
+  <fa-icon
+    role="button"
+    tabindex="0"
+    [attr.aria-describedby]="id"
+    [icon]="icones.faThumbsUp"
+  >
+  </fa-icon>
+  <span
+    [attr.id]="id"
+    [attr.aria-label]="numeroLikes + ' curtidas'"
+    class="contador-likes"
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    {{ numeroLikes }}
+  </span>
+</div>

@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular testing';
+  public curtidas = 0;
+
+  adicionarCurtida() {
+    this.curtidas++;
+  }
 }

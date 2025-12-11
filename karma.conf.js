@@ -8,8 +8,11 @@ module.exports = function (config) {
     plugins: [
       require("karma-jasmine"),
       require("karma-chrome-launcher"),
+      require("karma-firefox-launcher"),
+      require("karma-safari-launcher"),
       require("karma-jasmine-html-reporter"),
       require("karma-coverage"),
+      require("karma-junit-reporter"),
       require("@angular-devkit/build-angular/plugins/karma"),
     ],
     client: {
@@ -28,5 +31,11 @@ module.exports = function (config) {
     browsers: ["Chrome"],
     singleRun: false,
     restartOnFileChange: true,
+    customLaunchers: {
+      FirefoxSemInterface: {
+        base: "Firefox",
+        flags: ["-headless"],
+      },
+    },
   });
 };
