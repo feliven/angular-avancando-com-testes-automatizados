@@ -125,5 +125,31 @@ describe(CurtidaWidgetComponent.name, () => {
     expect(spyCurtida).not.toHaveBeenCalled();
   }));
 
+  it('deve exibir total de curtidas na página', fakeAsync(() => {
+    fixture.detectChanges();
+
+    // const spyCurtida = spyOn(component.curtida, 'emit');
+
+    // const totalLikes = 10;
+
+    // Math.floor(Math.random() * (max - min)) + min
+    const totalLikes = Math.floor(Math.random() * (50 - 1)) + 1;
+    console.log(totalLikes);
+
+    for (let i = 0; i < totalLikes; i++) {
+      component.adicionarCurtida();
+      tick(500);
+      fixture.detectChanges();
+    }
+
+    const numeroLikesNaPagina = fixture.nativeElement
+      .querySelector('.contador-likes')
+      .textContent.trim();
+
+    // expect(spyCurtida).toHaveBeenCalledTimes(totalLikes);
+
+    expect(numeroLikesNaPagina).toEqual(totalLikes.toString());
+  }));
+
   // it('', () => {});
 });
