@@ -215,5 +215,59 @@ describe(CurtidaWidgetComponent.name, () => {
     expect(textoContadorLikes).toEqual(totalLikes.toString());
   }));
 
+  it('pressionar Enter com botão de curtida selecionado deve ativar contador de likes', fakeAsync(() => {
+    fixture.detectChanges();
+
+    const botaoCurtida: HTMLElement =
+      fixture.nativeElement.querySelector('.curtida-widget');
+    const contadorLikes: HTMLElement =
+      fixture.nativeElement.querySelector('.contador-likes');
+
+    const pressionarEnter = new KeyboardEvent('keyup', { key: 'Enter' });
+
+    const totalLikes = Math.floor(Math.random() * (50 - 1)) + 1;
+    console.log(
+      totalLikes,
+      'pressionar Enter com botão de curtida selecionado deve ativar contador de likes'
+    );
+
+    for (let i = 0; i < totalLikes; i++) {
+      botaoCurtida.dispatchEvent(pressionarEnter);
+      tick(500);
+      fixture.detectChanges();
+    }
+
+    const textoContadorLikes = contadorLikes.textContent.trim();
+
+    expect(textoContadorLikes).toEqual(totalLikes.toString());
+  }));
+
+  it('pressionar Espaço com botão de curtida selecionado deve ativar contador de likes', fakeAsync(() => {
+    fixture.detectChanges();
+
+    const botaoCurtida: HTMLElement =
+      fixture.nativeElement.querySelector('.curtida-widget');
+    const contadorLikes: HTMLElement =
+      fixture.nativeElement.querySelector('.contador-likes');
+
+    const pressionarEspaco = new KeyboardEvent('keyup', { key: ' ' });
+
+    const totalLikes = Math.floor(Math.random() * (50 - 1)) + 1;
+    console.log(
+      totalLikes,
+      'pressionar Espaço com botão de curtida selecionado deve ativar contador de likes'
+    );
+
+    for (let i = 0; i < totalLikes; i++) {
+      botaoCurtida.dispatchEvent(pressionarEspaco);
+      tick(500);
+      fixture.detectChanges();
+    }
+
+    const textoContadorLikes = contadorLikes.textContent.trim();
+
+    expect(textoContadorLikes).toEqual(totalLikes.toString());
+  }));
+
   // it('', () => {});
 });
