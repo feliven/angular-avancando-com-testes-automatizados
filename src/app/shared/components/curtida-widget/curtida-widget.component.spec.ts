@@ -134,7 +134,7 @@ describe(CurtidaWidgetComponent.name, () => {
 
     // Math.floor(Math.random() * (max - min)) + min
     const totalLikes = Math.floor(Math.random() * (50 - 1)) + 1;
-    console.log(totalLikes);
+    console.log(totalLikes, 'deve exibir total de curtidas na página');
 
     for (let i = 0; i < totalLikes; i++) {
       component.adicionarCurtida();
@@ -161,16 +161,20 @@ describe(CurtidaWidgetComponent.name, () => {
 
     // Math.floor(Math.random() * (max - min)) + min
     const totalLikes = Math.floor(Math.random() * (50 - 1)) + 1;
-    console.log(totalLikes);
+    console.log(
+      totalLikes,
+      'aria-label do contador de likes deve ser atualizada a cada clique válido'
+    );
 
     for (let i = 0; i < totalLikes; i++) {
       component.adicionarCurtida();
       tick(500);
       fixture.detectChanges();
       labelContador = contadorLikes.getAttribute('aria-label');
-      console.log(labelContador);
       expect(labelContador).toBe(i + ' curtidas');
     }
+
+    console.log(labelContador);
   }));
 
   it('aria-label do contador de likes deve iniciar com valor padrão', fakeAsync(() => {
@@ -184,6 +188,31 @@ describe(CurtidaWidgetComponent.name, () => {
     labelContador = contadorLikes.getAttribute('aria-label');
 
     expect(labelContador).toBe(0 + ' curtidas');
+  }));
+
+  it('clique no botão de curtida deve ativar contador de likes', fakeAsync(() => {
+    fixture.detectChanges();
+
+    const botaoCurtida: HTMLElement =
+      fixture.nativeElement.querySelector('.curtida-widget');
+    const contadorLikes: HTMLElement =
+      fixture.nativeElement.querySelector('.contador-likes');
+
+    const totalLikes = Math.floor(Math.random() * (50 - 1)) + 1;
+    console.log(
+      totalLikes,
+      'clique no botão de curtida deve ativar contador de likes'
+    );
+
+    for (let i = 0; i < totalLikes; i++) {
+      botaoCurtida.click();
+      tick(500);
+      fixture.detectChanges();
+    }
+
+    const textoContadorLikes = contadorLikes.textContent.trim();
+
+    expect(textoContadorLikes).toEqual(totalLikes.toString());
   }));
 
   // it('', () => {});
