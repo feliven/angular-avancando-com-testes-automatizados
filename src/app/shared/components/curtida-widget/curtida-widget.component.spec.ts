@@ -152,6 +152,8 @@ describe(CurtidaWidgetComponent.name, () => {
   }));
 
   it('aria-label do contador de likes deve ser atualizada a cada clique válido', fakeAsync(() => {
+    // fixture.detectChanges();
+
     const contadorLikes: HTMLElement =
       fixture.nativeElement.querySelector('.contador-likes');
 
@@ -172,14 +174,13 @@ describe(CurtidaWidgetComponent.name, () => {
   }));
 
   it('aria-label do contador de likes deve iniciar com valor padrão', fakeAsync(() => {
+    fixture.detectChanges();
+
     const contadorLikes: HTMLElement =
       fixture.nativeElement.querySelector('.contador-likes');
 
     let labelContador: string;
 
-    component.adicionarCurtida();
-    tick(500);
-    fixture.detectChanges();
     labelContador = contadorLikes.getAttribute('aria-label');
 
     expect(labelContador).toBe(0 + ' curtidas');
