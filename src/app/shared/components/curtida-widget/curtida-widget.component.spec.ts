@@ -142,13 +142,47 @@ describe(CurtidaWidgetComponent.name, () => {
       fixture.detectChanges();
     }
 
-    const numeroLikesNaPagina = fixture.nativeElement
+    const numeroLikesNaPagina: string = fixture.nativeElement
       .querySelector('.contador-likes')
       .textContent.trim();
 
     // expect(spyCurtida).toHaveBeenCalledTimes(totalLikes);
 
     expect(numeroLikesNaPagina).toEqual(totalLikes.toString());
+  }));
+
+  it('aria-label do contador de likes deve ser atualizada a cada clique válido', fakeAsync(() => {
+    const contadorLikes: HTMLElement =
+      fixture.nativeElement.querySelector('.contador-likes');
+
+    let labelContador: string;
+
+    // Math.floor(Math.random() * (max - min)) + min
+    const totalLikes = Math.floor(Math.random() * (50 - 1)) + 1;
+    console.log(totalLikes);
+
+    for (let i = 0; i < totalLikes; i++) {
+      component.adicionarCurtida();
+      tick(500);
+      fixture.detectChanges();
+      labelContador = contadorLikes.getAttribute('aria-label');
+      console.log(labelContador);
+      expect(labelContador).toBe(i + ' curtidas');
+    }
+  }));
+
+  it('aria-label do contador de likes deve iniciar com valor padrão', fakeAsync(() => {
+    const contadorLikes: HTMLElement =
+      fixture.nativeElement.querySelector('.contador-likes');
+
+    let labelContador: string;
+
+    component.adicionarCurtida();
+    tick(500);
+    fixture.detectChanges();
+    labelContador = contadorLikes.getAttribute('aria-label');
+
+    expect(labelContador).toBe(0 + ' curtidas');
   }));
 
   // it('', () => {});
