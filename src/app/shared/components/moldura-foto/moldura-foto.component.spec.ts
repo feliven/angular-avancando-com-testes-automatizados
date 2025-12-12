@@ -21,4 +21,18 @@ describe('MolduraFotoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('deve exibir imagem quando src está definido', () => {
+    fixture.detectChanges();
+
+    const srcImagem = 'https://picsum.photos/600/400';
+
+    component.src = srcImagem;
+    fixture.detectChanges();
+
+    const foto: HTMLImageElement = fixture.nativeElement.querySelector('img');
+
+    expect(foto).toBeTruthy();
+    expect(foto.src).toContain(srcImagem);
+  });
 });
