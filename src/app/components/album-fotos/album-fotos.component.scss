@@ -1,0 +1,9 @@
+ol {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  li {
+    display: flex;
+    gap: 3rem;
+  }
+}

@@ -10,17 +10,17 @@ import { Foto } from '../../interfaces/foto';
 })
 export class AlbumFotosComponent implements OnChanges {
   @Input() listaFotos: Foto[] = [];
-  linhas: unknown[][] = [];
+  linhas: Foto[][] = [];
   itensPorLinha = 4;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.fotos) {
-      this.linhas = this.agruparColunas(changes.fotos.currentValue);
+    if (changes.listaFotos && changes.listaFotos.currentValue) {
+      this.linhas = this.agruparColunas(changes.listaFotos.currentValue);
     }
   }
 
-  agruparColunas(listaFotos: Foto[]): unknown[][] {
-    const linhasNovas = [];
+  agruparColunas(listaFotos: Foto[]): Foto[][] {
+    const linhasNovas: Foto[][] = [];
 
     for (
       let index = 0;
