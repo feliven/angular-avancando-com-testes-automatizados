@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { UniqueIdService } from '../../services/unique-id/unique-id.service';
+import { UniqueIdService } from '../../services/unique-id.service';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { debounceTime, Subject } from 'rxjs';

@@ -1,0 +1,28 @@
+<ol>
+  <!-- @for (item of items; track $index) {} -->
+  @for(colunas of linhas; track $index){
+  <li>
+    @for(foto of colunas; track $index){
+    <div>
+      <app-moldura-foto
+        [src]="foto.link"
+        [alt]="foto.descricao"
+      ></app-moldura-foto>
+    </div>
+    }
+  </li>
+  }
+</ol>
+
+<!-- <app-moldura-foto
+  [src]="'https://picsum.photos/600/400'"
+  [alt]="'alt'"
+></app-moldura-foto>
+<app-moldura-foto
+  [src]="'https://picsum.photos/599/400'"
+  [alt]="'alt'"
+></app-moldura-foto>
+<app-moldura-foto
+  [src]="'https://picsum.photos/601/400'"
+  [alt]="'alt'"
+></app-moldura-foto> -->

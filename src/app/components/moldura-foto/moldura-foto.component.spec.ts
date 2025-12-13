@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MolduraFotoComponent } from './moldura-foto.component';
-import { UniqueIdService } from '../../services/unique-id/unique-id.service';
+import { UniqueIdService } from '../../services/unique-id.service';
 
 describe('MolduraFotoComponent', () => {
   let component: MolduraFotoComponent;

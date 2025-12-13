@@ -7,7 +7,7 @@ import {
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CurtidaWidgetComponent } from './curtida-widget.component';
-import { UniqueIdService } from '../../services/unique-id/unique-id.service';
+import { UniqueIdService } from '../../services/unique-id.service';
 
 describe(CurtidaWidgetComponent.name, () => {
   let component: CurtidaWidgetComponent;
