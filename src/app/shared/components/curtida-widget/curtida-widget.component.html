@@ -1,9 +1,4 @@
-<div
-  class="curtida-widget"
-  (click)="adicionarCurtida()"
-  (keyup.Enter)="adicionarCurtida()"
-  (keyup.Space)="adicionarCurtida()"
->
+<div class="curtida-widget" (appAction)="adicionarCurtida()">
   <fa-icon
     role="button"
     tabindex="0"

@@ -11,10 +11,11 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { debounceTime, Subject } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActionDirective } from '../../directives/action.directive';
 
 @Component({
   selector: 'app-curtida-widget',
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, ActionDirective],
   templateUrl: './curtida-widget.component.html',
   styleUrl: './curtida-widget.component.scss',
 })
