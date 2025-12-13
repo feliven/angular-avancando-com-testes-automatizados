@@ -1,18 +1,27 @@
 <ol>
   <!-- @for (item of items; track $index) {} -->
-  @for(colunas of linhas; track $index){
+  @for(coluna of linhas; track $index){
   <li>
-    @for(foto of colunas; track $index){
+    @for(foto of coluna; track $index){
     <div>
       <app-moldura-foto
-        [src]="foto.link"
-        [alt]="foto.descricao"
+        [src]="foto.url"
+        [alt]="foto.description"
       ></app-moldura-foto>
     </div>
     }
   </li>
   }
 </ol>
+
+@for(foto of listaFotos; track foto.id){
+<div>
+  <app-moldura-foto
+    [src]="foto.url"
+    [alt]="foto.description"
+  ></app-moldura-foto>
+</div>
+}
 
 <!-- <app-moldura-foto
   [src]="'https://picsum.photos/600/400'"

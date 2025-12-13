@@ -7,6 +7,8 @@ import { CurtidaWidgetComponent } from './components/curtida-widget/curtida-widg
 import { UniqueIdService } from './services/unique-id.service';
 import { MolduraFotoComponent } from './components/moldura-foto/moldura-foto.component';
 import { AlbumFotosComponent } from './components/album-fotos/album-fotos.component';
+import { provideHttpClient } from '@angular/common/http';
+import { AsyncPipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,8 +18,9 @@ import { AlbumFotosComponent } from './components/album-fotos/album-fotos.compon
     CurtidaWidgetComponent,
     MolduraFotoComponent,
     AlbumFotosComponent,
+    AsyncPipe,
   ],
-  providers: [UniqueIdService],
+  providers: [UniqueIdService, provideHttpClient()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
