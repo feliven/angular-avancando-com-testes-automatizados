@@ -1,12 +1,10 @@
-import { Component, DebugElement } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActionDirective } from './action.directive';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 describe('ActionDirective', () => {
   let fixture: ComponentFixture<ActionDirectiveTestComponent>;
   let component: ActionDirectiveTestComponent;
-  let divElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +14,6 @@ describe('ActionDirective', () => {
     fixture = TestBed.createComponent(ActionDirectiveTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    divElement = fixture.debugElement.query(By.css('.dummy'));
   });
 
   it('should create an instance', () => {
@@ -25,16 +22,22 @@ describe('ActionDirective', () => {
   });
 
   it('@Output appAction deve emitir evento com payload ao pressionar Enter', () => {
+    const div = fixture.nativeElement.querySelector('.dummy');
+
     const pressionarEnter = new KeyboardEvent('keyup', { key: 'Enter' });
-    divElement.triggerEventHandler('keyup', pressionarEnter);
+
+    div.dispatchEvent(pressionarEnter);
     fixture.detectChanges();
 
     expect(component.hasEvent()).toBeTrue();
   });
 
   it('@Output appAction deve emitir evento com payload ao pressionar Espaço', () => {
+    const div = fixture.nativeElement.querySelector('.dummy');
+
     const pressionarEspaco = new KeyboardEvent('keyup', { key: ' ' });
-    divElement.triggerEventHandler('keyup', pressionarEspaco);
+
+    div.dispatchEvent(pressionarEspaco);
     fixture.detectChanges();
 
     expect(component.hasEvent()).toBeTrue();
