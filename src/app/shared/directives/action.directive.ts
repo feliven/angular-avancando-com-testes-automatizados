@@ -15,6 +15,13 @@ export class ActionDirective {
 
   @HostListener('keyup', ['$event'])
   resolverKeyPress(evento: KeyboardEvent) {
-    this.appAction.emit(evento);
+    if (evento.key === 'Enter' || evento.key === ' ') {
+      this.appAction.emit(evento);
+    }
   }
+
+  // @HostListener('keyup', ['$event'])
+  // resolverKeyPress(evento: KeyboardEvent) {
+  //   this.appAction.emit(evento);
+  // }
 }
