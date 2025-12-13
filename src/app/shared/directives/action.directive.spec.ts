@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActionDirective } from './action.directive';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 describe('ActionDirective', () => {
   let fixture: ComponentFixture<ActionDirectiveTestComponent>;
@@ -45,6 +46,21 @@ describe('ActionDirective', () => {
 
   it('@Output appAction deve emitir evento com payload ao clicar', () => {
     const div = fixture.nativeElement.querySelector('.dummy');
+
+    const darClique = new Event('click');
+
+    div.dispatchEvent(darClique);
+    fixture.detectChanges();
+
+    expect(component.hasEvent()).toBeTrue();
+  });
+
+  it('@Output appAction deve emitir evento com payload ao clicar - com DebugElement e By', () => {
+    // const div = fixture.nativeElement.querySelector('.dummy');
+
+    const div = fixture.debugElement.query(
+      By.directive(ActionDirective)
+    ).nativeElement;
 
     const darClique = new Event('click');
 
