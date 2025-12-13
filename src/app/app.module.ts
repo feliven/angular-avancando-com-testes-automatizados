@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CurtidaWidgetComponent } from './shared/components/curtida-widget/curtida-widget.component';
 import { UniqueIdService } from './shared/services/unique-id/unique-id.service';
 import { MolduraFotoComponent } from './shared/components/moldura-foto/moldura-foto.component';
+import { AlbumFotosComponent } from './shared/components/album-fotos/album-fotos.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { MolduraFotoComponent } from './shared/components/moldura-foto/moldura-f
     AppRoutingModule,
     CurtidaWidgetComponent,
     MolduraFotoComponent,
+    AlbumFotosComponent,
   ],
   providers: [UniqueIdService],
   bootstrap: [AppComponent],
