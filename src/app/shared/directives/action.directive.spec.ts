@@ -43,6 +43,17 @@ describe('ActionDirective', () => {
     expect(component.hasEvent()).toBeTrue();
   });
 
+  it('@Output appAction deve emitir evento com payload ao clicar', () => {
+    const div = fixture.nativeElement.querySelector('.dummy');
+
+    const darClique = new Event('click');
+
+    div.dispatchEvent(darClique);
+    fixture.detectChanges();
+
+    expect(component.hasEvent()).toBeTrue();
+  });
+
   // it('', () => {});
 });
 
