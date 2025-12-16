@@ -4,6 +4,19 @@ import { AlbumFotosComponent } from './album-fotos.component';
 import { MolduraFotoComponent } from '../moldura-foto/moldura-foto.component';
 import { Foto } from '../../interfaces/foto';
 
+function criarMockFotos(tamanho: number): Foto[] {
+  // Creates an array with X empty slots
+  // Loop callback: _ ignores the element, i is the index
+
+  const mockFotos: Foto[] = Array.from({ length: tamanho }, (_, i) => ({
+    id: i + 1,
+    url: `https://example.com/${i + 1}.jpg`,
+    description: `Foto ${i + 1}`,
+  }));
+
+  return mockFotos;
+}
+
 describe('AlbumFotosComponent', () => {
   let component: AlbumFotosComponent;
   let fixture: ComponentFixture<AlbumFotosComponent>;
@@ -35,10 +48,7 @@ describe('AlbumFotosComponent', () => {
 
   describe('Input: listaFotos', () => {
     it('should receive listaFotos from AppComponent', () => {
-      const mockFotos: Foto[] = [
-        { id: 1, url: 'https://example.com/1.jpg', description: 'Foto 1' },
-        { id: 2, url: 'https://example.com/2.jpg', description: 'Foto 2' },
-      ];
+      const mockFotos = criarMockFotos(2);
 
       component.listaFotos = mockFotos;
 
@@ -54,11 +64,7 @@ describe('AlbumFotosComponent', () => {
 
   describe('ngOnChanges', () => {
     it('should update linhas when listaFotos changes', () => {
-      const mockFotos: Foto[] = [
-        { id: 1, url: 'https://example.com/1.jpg', description: 'Foto 1' },
-        { id: 2, url: 'https://example.com/2.jpg', description: 'Foto 2' },
-        { id: 3, url: 'https://example.com/3.jpg', description: 'Foto 3' },
-      ];
+      const mockFotos: Foto[] = criarMockFotos(3);
 
       component.ngOnChanges({
         listaFotos: {
@@ -101,14 +107,7 @@ describe('AlbumFotosComponent', () => {
 
   describe('agruparColunas', () => {
     it('should group photos into rows of 4 items per line', () => {
-      // Creates an array with 12 empty slots
-      // Loop callback: _ ignores the element, i is the index (0-11)
-
-      const mockFotos: Foto[] = Array.from({ length: 12 }, (_, i) => ({
-        id: i + 1,
-        url: `https://example.com/${i + 1}.jpg`,
-        description: `Foto ${i + 1}`,
-      }));
+      const mockFotos: Foto[] = criarMockFotos(12);
 
       component.ngOnChanges({
         listaFotos: {
@@ -126,11 +125,7 @@ describe('AlbumFotosComponent', () => {
     });
 
     it('should handle remaining photos less than itensPorLinha', () => {
-      const mockFotos: Foto[] = Array.from({ length: 5 }, (_, i) => ({
-        id: i + 1,
-        url: `https://example.com/${i + 1}.jpg`,
-        description: `Foto ${i + 1}`,
-      }));
+      const mockFotos: Foto[] = criarMockFotos(5);
 
       component.ngOnChanges({
         listaFotos: {
