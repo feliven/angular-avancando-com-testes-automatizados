@@ -19,7 +19,7 @@ export class AlbumFotosComponent implements OnChanges {
     }
   }
 
-  agruparColunas(listaFotos: Foto[]): Foto[][] {
+  private agruparColunas(listaFotos: Foto[]): Foto[][] {
     const linhasNovas: Foto[][] = [];
 
     for (
