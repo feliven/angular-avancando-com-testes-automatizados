@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AlbumFotosComponent } from './album-fotos.component';
 import { MolduraFotoComponent } from '../moldura-foto/moldura-foto.component';
 import { Foto } from '../../interfaces/foto';
+import { SimpleChange, SimpleChanges } from '@angular/core';
 
 function criarMockFotos(tamanho: number): Foto[] {
   // Creates an array with X empty slots
@@ -66,14 +67,22 @@ describe('AlbumFotosComponent', () => {
     it('should update linhas when listaFotos changes', () => {
       const mockFotos: Foto[] = criarMockFotos(3);
 
-      component.ngOnChanges({
-        listaFotos: {
-          currentValue: mockFotos,
-          previousValue: [],
-          firstChange: true,
-          isFirstChange: () => true,
-        },
-      });
+      component.listaFotos = mockFotos;
+
+      const mudanca: SimpleChanges = {
+        listaFotos: new SimpleChange([], mockFotos, true),
+      };
+
+      component.ngOnChanges(mudanca);
+
+      // component.ngOnChanges({
+      //   listaFotos: {
+      //     currentValue: mockFotos,
+      //     previousValue: [],
+      //     firstChange: true,
+      //     isFirstChange: () => true,
+      //   },
+      // });
 
       expect(component.linhas.length).toBe(1);
       expect(component.linhas[0]).toEqual(mockFotos);
@@ -109,14 +118,22 @@ describe('AlbumFotosComponent', () => {
     it('should group photos into rows of 4 items per line', () => {
       const mockFotos: Foto[] = criarMockFotos(12);
 
-      component.ngOnChanges({
-        listaFotos: {
-          currentValue: mockFotos,
-          previousValue: [],
-          firstChange: true,
-          isFirstChange: () => true,
-        },
-      });
+      component.listaFotos = mockFotos;
+
+      const mudanca: SimpleChanges = {
+        listaFotos: new SimpleChange([], mockFotos, true),
+      };
+
+      component.ngOnChanges(mudanca);
+
+      // component.ngOnChanges({
+      //   listaFotos: {
+      //     currentValue: mockFotos,
+      //     previousValue: [],
+      //     firstChange: true,
+      //     isFirstChange: () => true,
+      //   },
+      // });
 
       expect(component.linhas.length).toBe(3);
       expect(component.linhas[0].length).toBe(4);
@@ -127,14 +144,22 @@ describe('AlbumFotosComponent', () => {
     it('should handle remaining photos less than itensPorLinha', () => {
       const mockFotos: Foto[] = criarMockFotos(5);
 
-      component.ngOnChanges({
-        listaFotos: {
-          currentValue: mockFotos,
-          previousValue: [],
-          firstChange: true,
-          isFirstChange: () => true,
-        },
-      });
+      component.listaFotos = mockFotos;
+
+      const mudanca: SimpleChanges = {
+        listaFotos: new SimpleChange([], mockFotos, true),
+      };
+
+      component.ngOnChanges(mudanca);
+
+      // component.ngOnChanges({
+      //   listaFotos: {
+      //     currentValue: mockFotos,
+      //     previousValue: [],
+      //     firstChange: true,
+      //     isFirstChange: () => true,
+      //   },
+      // });
 
       expect(component.linhas.length).toBe(2);
       expect(component.linhas[0].length).toBe(4);
@@ -142,14 +167,20 @@ describe('AlbumFotosComponent', () => {
     });
 
     it('should handle empty listaFotos', () => {
-      component.ngOnChanges({
-        listaFotos: {
-          currentValue: [],
-          previousValue: [],
-          firstChange: true,
-          isFirstChange: () => true,
-        },
-      });
+      const mudanca: SimpleChanges = {
+        listaFotos: new SimpleChange([], [], true),
+      };
+
+      component.ngOnChanges(mudanca);
+
+      // component.ngOnChanges({
+      //   listaFotos: {
+      //     currentValue: [],
+      //     previousValue: [],
+      //     firstChange: true,
+      //     isFirstChange: () => true,
+      //   },
+      // });
 
       expect(component.linhas.length).toBe(0);
     });
