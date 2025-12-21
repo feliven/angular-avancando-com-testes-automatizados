@@ -1,11 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
 
 import { HomeComponent } from './home.component';
-import { Foto } from '../../shared/interfaces/foto';
 import { AlbumFotosService } from '../../services/album-fotos.service';
-import { criarMockFotos } from '../../shared/criarMockFotos';
+import { AlbumFotosMockService } from '../../services/album-fotos-mock.service';
 
 describe('HomeComponent - Mock Provider', () => {
   let component: HomeComponent;
@@ -18,11 +16,7 @@ describe('HomeComponent - Mock Provider', () => {
         provideHttpClient(),
         {
           provide: AlbumFotosService,
-          useValue: {
-            getFotos(): Observable<Foto[]> {
-              return of(criarMockFotos(5));
-            },
-          },
+          useClass: AlbumFotosMockService,
         },
       ],
     }).compileComponents();
