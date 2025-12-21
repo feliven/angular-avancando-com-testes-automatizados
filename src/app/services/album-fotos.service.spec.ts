@@ -1,24 +1,18 @@
 import { TestBed } from '@angular/core/testing';
-
-import { AlbumFotosService } from './album-fotos.service';
+import { provideHttpClient } from '@angular/common/http';
 import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { Foto } from '../interfaces/foto';
-import { provideHttpClient } from '@angular/common/http';
 
-function criarMockFotos(tamanho: number): Foto[] {
-  const mockFotos: Foto[] = Array.from({ length: tamanho }, (_, i) => ({
-    id: i + 1,
-    url: `https://example.com/${i + 1}.jpg`,
-    description: `Foto ${i + 1}`,
-  }));
+import { AlbumFotosService } from './album-fotos.service';
+import { Foto } from '../shared/interfaces/foto';
+import { criarMockFotos } from '../shared/criarMockFotos';
 
-  return mockFotos;
-}
-
-function criarMockDados(tamanho: number) {
+function criarMockDados(tamanho: number): {
+  api: string;
+  dados: Foto[];
+} {
   return {
     api: 'http://localhost:3000/photos',
     dados: criarMockFotos(tamanho),
@@ -43,7 +37,7 @@ describe('AlbumFotosService', () => {
 
   afterEach(() => httpController.verify());
 
-  fit('deve retornar fotos com descrição em maiúscula', (done) => {
+  it('deve retornar fotos com descrição em maiúscula', (done) => {
     // Math.floor(Math.random() * (max - min)) + min
     const length = Math.floor(Math.random() * (20 - 1)) + 1;
 

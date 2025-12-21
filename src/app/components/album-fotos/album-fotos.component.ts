@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MolduraFotoComponent } from '../moldura-foto/moldura-foto.component';
-import { Foto } from '../../interfaces/foto';
+import { Foto } from '../../shared/interfaces/foto';
 
 @Component({
   selector: 'app-album-fotos',

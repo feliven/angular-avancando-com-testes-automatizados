@@ -3,18 +3,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 
 import { HomeComponent } from './home.component';
-import { Foto } from '../../interfaces/foto';
+import { Foto } from '../../shared/interfaces/foto';
 import { AlbumFotosService } from '../../services/album-fotos.service';
-
-function criarMockFotos(tamanho: number): Foto[] {
-  const mockFotos: Foto[] = Array.from({ length: tamanho }, (_, i) => ({
-    id: i + 1,
-    url: `https://example.com/${i + 1}.jpg`,
-    description: `Foto ${i + 1}`,
-  }));
-
-  return mockFotos;
-}
+import { criarMockFotos } from '../../shared/criarMockFotos';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -39,7 +30,7 @@ describe('HomeComponent', () => {
   });
 
   it('deve exibir fotos quando chegarem da API', () => {
-    const mockFotos = criarMockFotos(5);
+    const mockFotos: Foto[] = criarMockFotos(5);
 
     spyOn(service, 'getFotos').and.returnValue(of(mockFotos));
 

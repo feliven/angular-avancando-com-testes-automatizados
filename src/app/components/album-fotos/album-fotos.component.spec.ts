@@ -1,22 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SimpleChange, SimpleChanges } from '@angular/core';
 
 import { AlbumFotosComponent } from './album-fotos.component';
 import { MolduraFotoComponent } from '../moldura-foto/moldura-foto.component';
-import { Foto } from '../../interfaces/foto';
-import { SimpleChange, SimpleChanges } from '@angular/core';
-
-function criarMockFotos(tamanho: number): Foto[] {
-  // Creates an array with X empty slots
-  // Loop callback: _ ignores the element, i is the index
-
-  const mockFotos: Foto[] = Array.from({ length: tamanho }, (_, i) => ({
-    id: i + 1,
-    url: `https://example.com/${i + 1}.jpg`,
-    description: `Foto ${i + 1}`,
-  }));
-
-  return mockFotos;
-}
+import { Foto } from '../../shared/interfaces/foto';
+import { criarMockFotos } from '../../shared/criarMockFotos';
 
 describe('AlbumFotosComponent', () => {
   let component: AlbumFotosComponent;

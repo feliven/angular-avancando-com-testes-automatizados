@@ -5,7 +5,7 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AlbumFotosService } from '../../services/album-fotos.service';
-import { Foto } from '../../interfaces/foto';
+import { Foto } from '../../shared/interfaces/foto';
 import { AlbumFotosComponent } from '../../components/album-fotos/album-fotos.component';
 import { UniqueIdService } from '../../services/unique-id.service';
 
