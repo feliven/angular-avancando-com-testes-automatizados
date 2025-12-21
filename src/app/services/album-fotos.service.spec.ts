@@ -41,6 +41,8 @@ describe('AlbumFotosService', () => {
     expect(service).toBeTruthy();
   });
 
+  afterEach(() => httpController.verify());
+
   fit('deve retornar fotos com descrição em maiúscula', (done) => {
     // Math.floor(Math.random() * (max - min)) + min
     const length = Math.floor(Math.random() * (20 - 1)) + 1;
