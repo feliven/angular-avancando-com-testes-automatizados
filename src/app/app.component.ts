@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AlbumFotosService } from './services/album-fotos.service';
-import { Foto } from './interfaces/foto';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +6,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
   standalone: false,
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Angular testing';
-  fotosBackend: Observable<Foto[]>;
-
-  constructor(private service: AlbumFotosService) {}
-
-  ngOnInit(): void {
-    this.fotosBackend = this.service.getFotos();
-  }
 
   // public curtidas = 0;
 
