@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AlbumFotosService } from '../../services/album-fotos.service';
 import { Foto } from '../../interfaces/foto';
-import { AlbumFotosComponent } from 'src/app/components/album-fotos/album-fotos.component';
-import { UniqueIdService } from 'src/app/services/unique-id.service';
+import { AlbumFotosComponent } from '../../components/album-fotos/album-fotos.component';
+import { UniqueIdService } from '../../services/unique-id.service';
 
 @Component({
   selector: 'app-home',
-  imports: [AlbumFotosComponent, AsyncPipe],
+  imports: [AsyncPipe, AlbumFotosComponent, FontAwesomeModule],
   providers: [UniqueIdService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -17,6 +19,7 @@ import { UniqueIdService } from 'src/app/services/unique-id.service';
 export class HomeComponent implements OnInit {
   title = 'Angular testing';
   fotosBackend: Observable<Foto[]>;
+  icones = { faCircleNotch };
 
   constructor(private service: AlbumFotosService) {}
 

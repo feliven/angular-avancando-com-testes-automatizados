@@ -1,1 +1,13 @@
+@if(fotosBackend | async){
+
 <app-album-fotos [listaFotos]="fotosBackend | async"></app-album-fotos>
+} @else {
+<div class="loader">
+  <fa-icon
+    [icon]="icones.faCircleNotch"
+    fa-spin="true"
+    size="5x"
+    aria-busy="true"
+  ></fa-icon>
+</div>
+}
