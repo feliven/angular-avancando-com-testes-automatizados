@@ -1,11 +1,11 @@
-@if(fotosBackend | async){
+@let fotosAPI = (fotosBackend | async); @if(fotosAPI){
 
-<app-album-fotos [listaFotos]="fotosBackend | async"></app-album-fotos>
+<app-album-fotos [listaFotos]="fotosAPI"></app-album-fotos>
 } @else {
 <div class="loader">
   <fa-icon
     [icon]="icones.faCircleNotch"
-    fa-spin="true"
+    [spin]="true"
     size="5x"
     aria-busy="true"
   ></fa-icon>
